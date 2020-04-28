@@ -22,7 +22,9 @@ layui.define(['table', 'form'], function(exports){
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}
       ,{field: 'tradeid', title: '订单号', minWidth: 100}
-      ,{field: 'status', title: '交易状态'}
+      ,{field: 'status', width: 100, title: '交易状态'}
+      ,{field: 'charge', width: 100, title: '价格'}
+      ,{field: 'use_royalty', width: 100, title: '使用积分'}
       ,{field: 'body', title: '商品简述'}
       ,{field: 'name', title: '昵称'}
       ,{field: 'time', title: '更新时间', sort: true}
