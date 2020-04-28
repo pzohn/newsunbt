@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>商品添加</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">基本信息</div>
+          <div class="layui-card-body" pad15>
+            
+            <div class="layui-form" wid100 lay-filter="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="shopping_name" value="" class="layui-input">
+                </div>
+              </div>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品类型</label>
+                <div class="layui-input-block">
+                  <select name="shopping_type" lay-filter="aihao">
+                    <option value="" selected=""></option>
+                    <option value="7">限时抢</option>
+                    <option value="8">1元购</option>
+                    <option value="9">新品特价</option>
+                    <option value="10">教育教学</option>
+                    <option value="11">教育周边</option>
+                    <option value="12">绿色农场</option>
+                    <option value="13">健康养生</option>
+                    <option value="14">公告中心</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品价格</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="shopping_price" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company">元</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品分润</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="shopping_royalty" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company">元</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品积分</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="shopping_integral" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company"></div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品库存</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="shopping_stock" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company"></div>
+              </div>
+  <!--             <div class="layui-form-item">
+                <label class="layui-form-label">特殊说明</label>
+                <div class="layui-input-block">
+                  <input type="text" name="shopping_info" value="" class="layui-input">
+                </div>
+              </div> -->
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit id="submit-shopping-save" lay-filter="set_shopping">确认保存</button>
+                  <button class="layui-btn layui-hide layui-disabled" lay-submit id="submit-shopping-disabled">确认保存</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">标题图片上传</div>
+          <div class="layui-card-body">
+            <div class="layui-upload">
+              <button type="button" class="layui-btn layui-btn-normal" id="test-upload-change">选择图片</button>
+              <button type="button" class="layui-btn" id="test-upload-change-action">开始上传</button>
+              <button type="button" class="layui-btn layui-btn-normal layui-hide" id="test-upload-repeat">重新选择图片</button>
+              <button type="button" class="layui-btn layui-hide" id="test-upload-repeat-action">重新上传</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">轮播图片上传(支持多张图片)</div>
+          <div class="layui-card-body">
+            <div class="layui-upload">
+              <button type="button" class="layui-btn layui-btn-normal" id="test-upload-testList">选择图片</button> 
+              <div class="layui-upload-list">
+                <table class="layui-table">
+                  <thead>
+                    <tr><th>图片名</th>
+                    <th>大小</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr></thead>
+                  <tbody id="test-upload-demoList"></tbody>
+                </table>
+              </div>
+              <button type="button" class="layui-btn" id="test-upload-testListAction">开始上传</button>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">详情图片上传(支持多张图片)</div>
+          <div class="layui-card-body">
+            <div class="layui-upload">
+              <button type="button" class="layui-btn layui-btn-normal" id="test-upload-testList1">选择图片</button> 
+              <div class="layui-upload-list">
+                <table class="layui-table">
+                  <thead>
+                    <tr><th>图片名</th>
+                    <th>大小</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr></thead>
+                  <tbody id="test-upload-demoList1"></tbody>
+                </table>
+              </div>
+              <button type="button" class="layui-btn" id="test-upload-testListAction1">开始上传</button>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">海报图片上传</div>
+          <div class="layui-card-body">
+            <div class="layui-upload">
+              <button type="button" class="layui-btn layui-btn-normal" id="test-upload-testList2">选择图片</button> 
+              <div class="layui-upload-list">
+                <table class="layui-table">
+                  <thead>
+                    <tr><th>图片名</th>
+                    <th>大小</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr></thead>
+                  <tbody id="test-upload-demoList2"></tbody>
+                </table>
+              </div>
+              <button type="button" class="layui-btn" id="test-upload-testListAction2">开始上传</button>
+            </div> 
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+<!--     <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">视频上传</div>
+          <div class="layui-card-body">
+            <button type="button" class="layui-btn" id="test-upload-video"><i class="layui-icon"></i>上传视频</button>
+            <button type="button" class="layui-btn layui-hide" id="test-upload-repeat-video"><i class="layui-icon"></i>重新上传</button>
+            <button type="button" class="layui-btn" id="test-upload-type4"><i class="layui-icon"></i>上传音频</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+
+
+
+    <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+      <div class="layui-col-md12">
+        <div class="layui-card" style="text-align: right;">
+          <div class="layui-card-body">
+            <button type="button" class="layui-btn" lay-submit lay-filter="finish_shopping">完成商品添加</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+
+    layui.config({
+    base: '../../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'upload','form'], function(){
+    var $ = layui.jquery
+    ,upload = layui.upload
+    ,form = layui.form
+    ,admin = layui.admin
+    ,uploadId = 0
+    ,upVideoId = 0
+    ,Id = 0
+    ,File_Type = 0;
+
+
+  form.on('submit(finish_shopping)', function(obj){
+    window.location.reload();
+
+    return false;
+  });
+  
+
+        //商品基本信息保存
+  form.on('submit(set_shopping)', function(obj){
+    admin.req({
+      url: 'https://www.hattonstar.com/shoppingInsert'
+      ,method:'POST'
+      ,data: {
+        'name':obj.field.shopping_name,
+        'flag':obj.field.shopping_info,
+        'price':obj.field.shopping_price,
+        'type':obj.field.shopping_type,
+        'royalty':obj.field.shopping_royalty,
+        'integral':obj.field.shopping_integral,
+        'stock':obj.field.shopping_stock,
+        'oper':'sun',
+        'shop_id':2
+      }
+      ,success: function(res){
+      $("#submit-shopping-save").addClass('layui-hide');
+      $("#submit-shopping-disabled").removeClass('layui-hide');
+      Id = res.data.id;
+      File_Type = res.data.type;
+      upload.render({
+      elem: '#test-upload-change'
+      ,url: 'https://www.hattonstar.com/uploadOne'
+      ,size:1024
+      ,data:{
+        'path': 'title',
+        'type':File_Type,
+        'parent_id':Id
+      }
+      ,auto: false
+      //,multiple: true
+      ,bindAction: '#test-upload-change-action'
+      ,done: function(res){
+        if (res.code == 0) {
+          $("#test-upload-change").addClass('layui-hide');
+          $("#test-upload-repeat").removeClass('layui-hide');
+          $("#test-upload-change-action").addClass('layui-hide');
+          $("#test-upload-repeat-action").removeClass('layui-hide');
+          uploadId = res.data.image_id;
+
+          upload.render({
+          elem: '#test-upload-repeat'
+          ,url: 'https://www.hattonstar.com/uploadOneRepeat'
+          ,size:1024
+          ,data:{
+            'path': 'title',
+            'id':uploadId
+          }
+          ,auto: false
+          //,multiple: true
+          ,bindAction: '#test-upload-repeat-action'
+          ,done: function(res){
+            if (res.code == 0) {
+               return layer.msg('标题图片上传成功');
+            }
+          }
+      });
+           return layer.msg('标题图片上传成功');
+        }
+      }
+    });
+
+
+    //多文件列表示例
+    var demoListView = $('#test-upload-demoList')
+    ,uploadListIns = upload.render({
+      elem: '#test-upload-testList'
+      ,url: 'https://www.hattonstar.com/uploadOne'
+      ,size:1024
+      ,data:{
+        'path': 'lunbo',
+        'type':File_Type,
+        'parent_id':Id
+      }
+      ,accept: 'images'
+      ,multiple: true
+      ,auto: false
+      ,bindAction: '#test-upload-testListAction'
+      ,choose: function(obj){
+        var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+        //读取本地文件
+        obj.preview(function(index, file, result){
+          var tr = $(['<tr id="upload-'+ index +'">'
+            ,'<td>'+ file.name +'</td>'
+            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+            ,'<td>等待上传</td>'
+            ,'<td>'
+              ,'<button class="layui-btn layui-btn-mini test-upload-demo-reload layui-hide">重传</button>'
+              ,'<button class="layui-btn layui-btn-mini layui-btn-danger test-upload-demo-delete">删除</button>'
+            ,'</td>'
+          ,'</tr>'].join(''));
+          
+          //单个重传
+          tr.find('.test-upload-demo-reload').on('click', function(){
+            obj.upload(index, file);
+          });
+          
+          //删除
+          tr.find('.test-upload-demo-delete').on('click', function(){
+            delete files[index]; //删除对应的文件
+            tr.remove();
+            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+          });
+          
+          demoListView.append(tr);
+        });
+      }
+      ,done: function(res, index, upload){
+        if(res.code == 0){ //上传成功
+          var tr = demoListView.find('tr#upload-'+ index)
+          ,tds = tr.children();
+          tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+          tds.eq(3).html(''); //清空操作
+          return delete this.files[index]; //删除文件队列已经上传成功的文件
+        }
+        this.error(index, upload);
+      }
+      ,error: function(index, upload){
+        var tr = demoListView.find('tr#upload-'+ index)
+        ,tds = tr.children();
+        tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+        tds.eq(3).find('.test-upload-demo-reload').removeClass('layui-hide'); //显示重传
+      }
+    });
+
+
+    var demoListView1 = $('#test-upload-demoList1')
+    ,uploadListIns1 = upload.render({
+      elem: '#test-upload-testList1'
+      ,url: 'https://www.hattonstar.com/uploadOne'
+      ,size:1024
+      ,data:{
+        'path': 'detail',
+        'type':File_Type,
+        'parent_id':Id
+      }
+      ,accept: 'images'
+      ,multiple: true
+      ,auto: false
+      ,bindAction: '#test-upload-testListAction1'
+      ,choose: function(obj){   
+        var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+        //读取本地文件
+        obj.preview(function(index, file, result){
+          var tr = $(['<tr id="upload-'+ index +'">'
+            ,'<td>'+ file.name +'</td>'
+            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+            ,'<td>等待上传</td>'
+            ,'<td>'
+              ,'<button class="layui-btn layui-btn-mini test-upload-demo-reload layui-hide">重传</button>'
+              ,'<button class="layui-btn layui-btn-mini layui-btn-danger test-upload-demo-delete">删除</button>'
+            ,'</td>'
+          ,'</tr>'].join(''));
+          
+          //单个重传
+          tr.find('.test-upload-demo-reload').on('click', function(){
+            obj.upload(index, file);
+          });
+          
+          //删除
+          tr.find('.test-upload-demo-delete').on('click', function(){
+            delete files[index]; //删除对应的文件
+            tr.remove();
+            uploadListIns1.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+          });
+          
+          demoListView1.append(tr);
+        });
+      }
+      ,done: function(res, index, upload){
+        if(res.code == 0){ //上传成功
+          var tr = demoListView1.find('tr#upload-'+ index)
+          ,tds = tr.children();
+          tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+          tds.eq(3).html(''); //清空操作
+          return delete this.files[index]; //删除文件队列已经上传成功的文件
+        }
+        this.error(index, upload);
+      }
+      ,error: function(index, upload){
+        var tr = demoListView1.find('tr#upload-'+ index)
+        ,tds = tr.children();
+        tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+        tds.eq(3).find('.test-upload-demo-reload').removeClass('layui-hide'); //显示重传
+      }
+    });
+
+    var demoListView2 = $('#test-upload-demoList2')
+    ,uploadListIns2 = upload.render({
+      elem: '#test-upload-testList2'
+      ,url: 'https://www.hattonstar.com/uploadOne'
+      ,size:1024
+      ,data:{
+        'path': 'poster',
+        'type':File_Type,
+        'parent_id':Id
+      }
+      ,accept: 'images'
+      ,multiple: false
+      ,auto: false
+      ,bindAction: '#test-upload-testListAction2'
+      ,choose: function(obj){   
+        var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+        //读取本地文件
+        obj.preview(function(index, file, result){
+          var tr = $(['<tr id="upload-'+ index +'">'
+            ,'<td>'+ file.name +'</td>'
+            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+            ,'<td>等待上传</td>'
+            ,'<td>'
+              ,'<button class="layui-btn layui-btn-mini test-upload-demo-reload layui-hide">重传</button>'
+              ,'<button class="layui-btn layui-btn-mini layui-btn-danger test-upload-demo-delete">删除</button>'
+            ,'</td>'
+          ,'</tr>'].join(''));
+          
+          //单个重传
+          tr.find('.test-upload-demo-reload').on('click', function(){
+            obj.upload(index, file);
+          });
+          
+          //删除
+          tr.find('.test-upload-demo-delete').on('click', function(){
+            delete files[index]; //删除对应的文件
+            tr.remove();
+            uploadListIns2.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+          });
+          
+          demoListView2.append(tr);
+        });
+      }
+      ,done: function(res, index, upload){
+        if(res.code == 0){ //上传成功
+          var tr = demoListView2.find('tr#upload-'+ index)
+          ,tds = tr.children();
+          tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+          tds.eq(3).html(''); //清空操作
+          return delete this.files[index]; //删除文件队列已经上传成功的文件
+        }
+        this.error(index, upload);
+      }
+      ,error: function(index, upload){
+        var tr = demoListView2.find('tr#upload-'+ index)
+        ,tds = tr.children();
+        tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+        tds.eq(3).find('.test-upload-demo-reload').removeClass('layui-hide'); //显示重传
+      }
+    });
+
+    upload.render({
+      elem: '#test-upload-video'
+      ,url: 'https://www.hattonstar.com/uploadOne'
+      ,size:1024
+      ,data:{
+        'path': 'video',
+        'type':File_Type,
+        'parent_id':Id
+      }
+      ,accept: 'video' //视频
+      ,done: function(res){
+        if (res.code == 0) {
+            $("#test-upload-video").addClass('layui-hide');
+            $("#test-upload-repeat-video").removeClass('layui-hide');
+            upVideoId = res.data.image_id;
+            return layer.msg('视频上传成功');
+        }
+      }
+    });
+
+    upload.render({
+      elem: '#test-upload-repeat-video'
+      ,url: 'https://www.hattonstar.com/uploadOneRepeat'
+      ,size:1024
+      ,data:{
+        'path': 'title',
+        'id':upVideoId
+      }
+      ,accept: 'video' //视频
+      ,done: function(res){
+       return layer.msg('视频上传成功');
+      }
+    });
+
+
+
+        return layer.msg(res.msg);
+      }
+    });
+
+    return false;
+  });
+
+    //选完文件后不自动上传
+    // upload.render({
+    //   elem: '#test-upload-change'
+    //   ,url: 'https://www.hattonstar.com/uploadOne'
+    //   ,size:1024
+    //   ,data:{
+    //     'path': 'title',
+    //     'type':1,
+    //     'parent_id':Id
+    //   }
+    //   ,auto: false
+    //   //,multiple: true
+    //   ,bindAction: '#test-upload-change-action'
+    //   ,done: function(res){
+    //     console.log(res)
+    //     console.log(Id);
+    //     if (res.code == 0) {
+    //         console.log(Id);
+    //         $("#test-upload-change").addClass('layui-hide');
+    //         $("#test-upload-repeat").removeClass('layui-hide');
+    //         $("#test-upload-change-action").addClass('layui-hide');
+    //         $("#test-upload-repeat-action").removeClass('layui-hide');
+    //         uploadId = res.data.image_id;
+    //        return layer.msg('标题图片上传成功');
+    //     }
+    //   }
+    // });
+  
+  });
+  </script>
+</body>
+</html>
